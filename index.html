@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gothic Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #blood;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                url('/api/placeholder/1920/1080') center/cover;
+            z-index: -1;
+        }
+
+        .fog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(20,20,20,0.5), rgba(20,20,20,0.5));
+            filter: url('#turbulence');
+            z-index: -1;
+            animation: fogAnimation 20s infinite;
+        }
+
+        @keyframes fogAnimation {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #blood;
+            text-shadow: 0 0 10px rgba(200,0,0,0.5);
+            animation: pulsate 2s infinite;
+        }
+
+        @keyframes pulsate {
+            0% { text-shadow: 0 0 10px rgba(200,0,0,0.5); }
+            50% { text-shadow: 0 0 20px rgba(200,0,0,0.8); }
+            100% { text-shadow: 0 0 10px rgba(200,0,0,0.5); }
+        }
+
+        nav {
+            margin: 2rem 0;
+        }
+
+        nav a {
+            color: #blood;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: #800;
+            text-shadow: 0 0 10px rgba(200,0,0,0.5);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #800;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .gallery-item-content {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0,0,0,0.8);
+            color: #blood;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-content {
+            bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.8);
+            margin-top: 2rem;
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #800;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-inner {
+            width: 6px;
+            height: 6px;
+            background: #800;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-inner"></div>
+    <div class="background"></div>
+    <div class="fog"></div>
+
+    <header>
+        <h1 class="logo">Dark Arts Portfolio</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery" class="gallery">
+            <div class="gallery-item">
+                <img src="14fafd4e7cc01d61bb04dfa5525b9565.jpg" alt="Dark Forest">
+                <div class="gallery-item-content">
+                    <h3>Haunted Grove</h3>
+                    <p>Ancient trees whisper forgotten secrets...</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="81t8c3SWQYL.jpg" alt="Vintage Doll">
+                <div class="gallery-item-content">
+                    <h3>Forgotten Memories</h3>
+                    <p>Porcelain faces hold untold stories...</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="images.jpeg" alt="Gothic Rose">
+                <div class="gallery-item-content">
+                    <h3>Dark Blooms</h3>
+                    <p>Where beauty meets darkness...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Dark Arts Portfolio | Enter at your own risk</p>
+    </footer>
+
+    <svg style="display: none;">
+        <filter id="turbulence">
+            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3">
+                <animate attributeName="baseFrequency" dur="60s" values="0.01;0.02;0.01" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="30" />
+        </filter>
+    </svg>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorInner = document.querySelector('.cursor-inner');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorInner.style.left = e.clientX + 'px';
+            cursorInner.style.top = e.clientY + 'px';
+        });
+
+        // Animate gallery items on scroll
+        gsap.from('.gallery-item', {
+            duration: 1,
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.gallery',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: 1
+            }
+        });
+
+        // Hover effect for nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorInner.style.transform = 'translate(-50%, -50%) scale(0.5)';
+            });
+
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorInner.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+
 
